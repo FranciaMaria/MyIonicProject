@@ -8,7 +8,8 @@ import { NavController, NavParams } from 'ionic-angular';
 export class HomePage {
 
   selectedItem: any;
-  items: Array<{title: string, note: string}>;
+  items: Array<{title: string, note: string, icon: string}>;
+  icons: string[];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -16,10 +17,17 @@ export class HomePage {
   	this.selectedItem = navParams.get('item');
 
   	this.items = [];
+
+  	this.icons = [
+  		'flask', 'flower', 'leaf', 'planet', 'pulse', 'rainy', 'snow', 'paw', 'musical-notes', 'medical'
+  	];
+
+  	
   	for (let i = 1; i <= 10; i++) {
   		this.items.push({
   			title: 'Item ' + i,
   			note: 'This is item #' + i,
+  			icon: this.icons[i-1]
   		});
   	}
   }

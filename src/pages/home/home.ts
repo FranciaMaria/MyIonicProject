@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { TodoService } from '../../shared/todo.service';
 
 @Component({
   selector: 'page-home',
@@ -8,28 +9,16 @@ import { NavController, NavParams } from 'ionic-angular';
 export class HomePage {
 
   selectedItem: any;
-  items: Array<{title: string, note: string, icon: string}>;
-  icons: string[];
+  items: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public todoService: TodoService) {
 
   	this.selectedItem = navParams.get('item');
 
-  	this.items = [];
-
-  	this.icons = [
-  		'flask', 'flower', 'leaf', 'planet', 'pulse', 'rainy', 'snow', 'paw', 'musical-notes', 'medical'
-  	];
+  	this.items = todoService.getAll();
 
   	
-  	for (let i = 1; i <= 10; i++) {
-  		this.items.push({
-  			title: 'Item ' + i,
-  			note: 'This is item #' + i,
-  			icon: this.icons[i-1]
-  		});
-  	}
   }
 
 }
